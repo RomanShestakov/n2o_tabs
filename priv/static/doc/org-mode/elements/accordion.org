@@ -1,0 +1,59 @@
+#+TITLE: Accordion Element
+#+AUTHOR: Roman Shestakov (@rshestakov)
+#+EMAIL:
+
+* Accordion Element - #accordion {}
+
+  The implementation of jQuery accordion element.
+
+** Usage
+
+#+BEGIN_SRC erlang
+	#accordion{
+	    id = accordion,
+	    options = [
+		{event, mouseover},
+		{active, 2}
+	    ],
+	    body = [
+		#panel{text = "Section 1", body = [#p{ text =
+		    "Mauris mauris ante, blandit et, ultrices a, suscipit eget.
+		    Integer ut neque. Vivamus nisi metus, molestie vel, gravida in,
+		    condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros.
+		    Nam mi. Proin viverra leo ut odio."}]},
+		#panel{text = "Section 2", body = [#p{ text =
+		    "Mauris mauris ante, blandit et, ultrices a, suscipit eget.
+		    Integer ut neque. Vivamus nisi metus, molestie vel, gravida in,
+		    condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros.
+		    Nam mi. Proin viverra leo ut odio."}]},
+		#panel{text = "Section 3", body = [#p{ text =
+		    "Mauris mauris ante, blandit et, ultrices a, suscipit eget.
+		    Integer ut neque. Vivamus nisi metus, molestie vel, gravida in,
+		    condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros.
+		    Nam mi. Proin viverra leo ut odio."}]},
+		#panel{text = "Section 4", body = [
+		    #list { body=[
+			#listitem { text="List Item 1" },
+			#listitem { text="List Item 2" },
+			#listitem { body=#checkbox { text="List Item 3" }}
+		    ]}
+		]}
+	    ],
+	    actions = [
+		#accordion_event_on{trigger = accordion, type = ?EVENT_ACCORDION_ACTIVATE,
+		    postback = {Tag, {accordion, ?EVENT_ACCORDION_ACTIVATE}}},
+		#accordion_event_on{trigger = accordion, type = ?EVENT_ACCORDION_BEFORE_ACTIVATE,
+		    postback = {Tag, {accordion, ?EVENT_ACCORDION_BEFORE_ACTIVATE}}},
+		#accordion_event_on{trigger = accordion, type = ?EVENT_ACCORDION_CREATE,
+		    postback = {Tag, {accordion, ?EVENT_ACCORDION_CREATE}}}
+	    ]
+	}
+
+#+END_SRC
+
+** Attributes
+
+   + body - (/list of #panel{} elements/) :: Set of the panels that will be rendered within this accordion.
+
+   + options - (/list of tuples/) :: Options which are set during control initialization.
+

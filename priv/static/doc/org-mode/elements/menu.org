@@ -1,0 +1,40 @@
+#+TITLE: Menu Element
+#+AUTHOR: Roman Shestakov (@rshestakov)
+#+EMAIL:
+
+* Menu Element - #menu {}
+
+  The implementation of jQuery menu element.
+
+** Usage
+
+#+BEGIN_SRC erlang
+	#menu{
+	    id = menu,
+	    options = [ %%{disabled, true},
+		{icons, {{submenu, <<"ui-icon-circle-triangle-e">>}}},
+		{position, {{my, <<"left top">>}, {at, <<"right top">>}}}
+	    ],
+	    style = "width:150px;",
+	    body = [
+		#item{title = "USA", body = [#item{title = "New York City"}, #item{title = "Boston"}]},
+		#item{title = "UK"},
+		#item{title = "Russia"}
+	    ],
+	    %% add actions which bind native menu events
+	    actions = [
+		#menu_event_on{trigger = menu, type = ?EVENT_MENU_BLUR, postback = {Tag, {menu, ?EVENT_MENU_BLUR}}},
+		#menu_event_on{trigger = menu, type = ?EVENT_MENU_CREATE, postback = {Tag, {menu, ?EVENT_MENU_CREATE}}},
+		#menu_event_on{trigger = menu, type = ?EVENT_MENU_FOCUS, postback = {Tag, {menu, ?EVENT_MENU_FOCUS}}},
+		#menu_event_on{trigger = menu, type = ?EVENT_MENU_FOCUS, postback = {Tag, {menu, ?EVENT_MENU_SELECT}}}
+	    ]
+	}
+
+#+END_SRC
+
+** Attributes
+
+   + body - (/list of #item{} elements/) :: Set of the items in the
+	#menu, could be recursive.
+
+   + options - (/list of tuples/) :: Options which are set during tabs initialization.

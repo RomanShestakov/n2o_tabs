@@ -6,7 +6,4 @@ logs
 .#*
 *.beam
 /deps/*
-/priv/static/*
 /priv/plugins/*
-!/priv/static/css
-!/priv/static/content
