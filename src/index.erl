@@ -3,7 +3,7 @@
 % See MIT-LICENSE for licensing information.
 
 -module(index).
--include_lib("nitrogen_elements/include/nitrogen_elements.hrl").
+-include_lib("n2o_tabs/include/nitrogen_elements.hrl").
 -compile(export_all).
 
 main() -> #template { file=filename:join([templates(), "onecolumn.html"]) }.
