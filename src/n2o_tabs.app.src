@@ -1,0 +1,8 @@
+{application,n2o_tabs,
+             [{description,"Web interface"},
+              {vsn,"1"},
+              {applications,[kernel,stdlib]},
+              {registered,[]},
+              {mod,{n2o_tabs_app,[]}},
+              {env,[]},
+              {modules,[]}]}.
